@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>All In Abe</title>
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#0b0a14" />
+    <link rel="icon" href="favicon.ico" sizes="256x256" type="image/x-icon" />
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+  <body>
+    <main class="brand-page">
+      <div class="gate">
+        <div class="logo-wrap">
+          <div class="logo">
+            <div class="logo__glow" aria-hidden="true"></div>
+            <img class="logo__img" src="assets/abe-logo.avif" alt="All In Abe" width="110" height="110" decoding="async" />
+          </div>
+        </div>
+        <h1 id="title" class="display display--lg">Checking your payment</h1>
+        <p id="message" class="prose-body">one sec…</p>
+        <a id="action" class="cta" href="index.html">Back</a>
+      </div>
+    </main>
+
+    <script>
+      // Landing page after Whop checkout.
+      //  - Off-site bank step (3DS) return: ?payment=pay_…&status=succeeded|failed|canceled
+      //  - Checkout link redirect URL:      ?payment_id=pay_…
+      // These query params are hints only — never proof of payment. Access is granted
+      // by Whop (membership) and fulfilment should come from Whop webhooks.
+      (function () {
+        var q = new URLSearchParams(window.location.search);
+        var status = q.get("status");
+        var hasPaymentId = /^pay_[A-Za-z0-9]+$/.test(q.get("payment_id") || "");
+        var title = document.getElementById("title");
+        var message = document.getElementById("message");
+        var action = document.getElementById("action");
+
+        function set(t, m, label, href) {
+          title.textContent = t;
+          message.textContent = m;
+          action.textContent = label;
+          action.setAttribute("href", href);
+        }
+
+        if (status === "succeeded" || (!status && hasPaymentId)) {
+          set(
+            "You're in",
+            "thanks for grabbing the 2-day pass. your access is on your Whop account — check your email for the receipt.",
+            "Open Whop",
+            "https://whop.com/"
+          );
+        } else if (status === "failed") {
+          set(
+            "Payment didn't go through",
+            "your bank didn't approve it and you weren't charged for this attempt. try again or use a different card.",
+            "Try again",
+            "index.html"
+          );
+        } else if (status === "canceled") {
+          set(
+            "Payment canceled",
+            "no worries — nothing went through. you can pick it back up anytime.",
+            "Back to checkout",
+            "index.html"
+          );
+        } else {
+          set(
+            "Nothing to show here",
+            "if you just paid, your access shows up on your Whop account and in your email receipt.",
+            "Back",
+            "index.html"
+          );
+        }
+
+        // Strip payment ids from the address bar so they don't end up in shared links or analytics.
+        if (window.history && history.replaceState && window.location.search) {
+          history.replaceState(null, "", window.location.pathname);
+        }
+      })();
+    </script>
+  </body>
+</html>

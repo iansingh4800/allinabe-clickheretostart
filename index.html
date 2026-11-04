@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>All In Abe</title>
+    <meta name="description" content="Small money into tall money." />
+    <meta name="theme-color" content="#0b0a14" />
+    <link rel="icon" href="favicon.ico" sizes="256x256" type="image/x-icon" />
+    <link rel="preload" href="assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="assets/abe-logo.avif" as="image" />
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+  <body>
+    <main class="brand-page">
+      <div class="gate">
+        <div class="logo-wrap">
+          <div class="logo">
+            <div class="logo__glow" aria-hidden="true"></div>
+            <img class="logo__img" src="assets/abe-logo.avif" alt="All In Abe" width="110" height="110" decoding="async" />
+          </div>
+        </div>
+        <h1 class="display display--lg">Join to get in</h1>
+        <p class="prose-body">this page is open to AIA members. grab free access and it loads instantly.</p>
+        <!-- Without JavaScript (or if Whop's script can't load) this link opens Whop's hosted checkout. -->
+        <a
+          id="get-access"
+          class="cta"
+          href="https://whop.com/checkout/plan_rFD30uR1jYf1w"
+          target="_blank"
+          rel="noreferrer"
+          >Get access</a
+        >
+      </div>
+    </main>
+
+    <dialog id="checkout-dialog" class="checkout-dialog" aria-label="Checkout">
+      <div class="checkout-dialog__panel">
+        <header class="checkout-dialog__bar">
+          <span class="eyebrow">🔒 Secure checkout</span>
+          <button type="button" class="checkout-dialog__close" data-close aria-label="Close">
+            <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
+              <title>Close</title>
+              <path d="M1.5 1.5l11 11m0-11l-11 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+            </svg>
+          </button>
+        </header>
+        <div class="checkout-dialog__body">
+          <div id="checkout-loading" class="checkout-status prose-body" role="status">
+            <div class="spinner" aria-hidden="true"></div>
+            <p>Loading secure checkout…</p>
+          </div>
+          <div id="checkout-error" class="checkout-status prose-body" role="alert" hidden>
+            <p>The checkout couldn't load here.</p>
+            <a class="cta" href="https://whop.com/checkout/plan_rFD30uR1jYf1w" target="_blank" rel="noreferrer">Open checkout on Whop</a>
+          </div>
+          <div id="whop-checkout"></div>
+        </div>
+      </div>
+    </dialog>
+
+    <script src="https://cdn.whop.com/elements/amber/elements.js" data-whop-elements async></script>
+    <script src="assets/checkout.js" defer></script>
+  </body>
+</html>
