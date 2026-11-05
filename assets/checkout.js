@@ -59,13 +59,14 @@
     });
   }
 
-  // Where the buyer lands after an off-site bank step (3DS etc.). Only set on a
-  // real https origin (or localhost) — Whop requires https here.
+  // Where the buyer lands after checkout / an off-site bank step (3DS etc.).
+  // Root-absolute so it works whether this page is served at "/" or at Whop's
+  // "/experiences/exp_…" path. Only set on https (or localhost): Whop requires it.
   function returnUrl() {
     var loc = window.location;
     var isLocal = loc.hostname === "localhost" || loc.hostname === "127.0.0.1";
     if (loc.protocol !== "https:" && !(isLocal && loc.protocol === "http:")) return undefined;
-    return new URL("thanks.html", loc.href).href;
+    return loc.origin + "/thanks.html";
   }
 
   function startCheckout() {
