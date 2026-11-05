@@ -838,17 +838,6 @@ html:not(.js) .marquee__track,
   box-shadow: inset 0 0 0 1px rgba(139, 132, 196, 0.34);
 }
 
-.capper__avatar--mono {
-  display: grid;
-  place-items: center;
-  background: linear-gradient(135deg, #2a2547, #12111f);
-  font-family: var(--font-display), sans-serif;
-  font-variation-settings: "wdth" 120;
-  font-weight: 800;
-  font-size: 1.1rem;
-  color: var(--brand-cream);
-}
-
 .capper__role {
   font-family: var(--font-mono), monospace;
   font-size: 0.65rem;
