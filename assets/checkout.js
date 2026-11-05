@@ -7,13 +7,15 @@
   var HOSTED_CHECKOUT_URL = "https://whop.com/checkout/" + PLAN_ID;
   var SDK_WAIT_MS = 12000;
 
-  var trigger = document.getElementById("get-access");
+  // Every "buy" button on the page carries data-checkout and links to Whop's hosted
+  // checkout as a no-JS fallback; with JS they open the embedded checkout instead.
+  var triggers = document.querySelectorAll("[data-checkout]");
   var dialog = document.getElementById("checkout-dialog");
   var loadingEl = document.getElementById("checkout-loading");
   var errorEl = document.getElementById("checkout-error");
   var mountEl = document.getElementById("whop-checkout");
 
-  if (!trigger || !dialog || typeof dialog.showModal !== "function") {
+  if (!triggers.length || !dialog || typeof dialog.showModal !== "function") {
     // Very old browser: leave the plain link to Whop's hosted checkout in place.
     return;
   }
@@ -149,7 +151,9 @@
     if (dialog.open) dialog.close();
   }
 
-  trigger.addEventListener("click", function (event) {
+  document.addEventListener("click", function (event) {
+    var link = event.target.closest && event.target.closest("[data-checkout]");
+    if (!link) return;
     // Modifier-clicks keep the normal "open Whop checkout in a new tab" behaviour.
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
     event.preventDefault();
@@ -168,5 +172,5 @@
   if (closeBtn) closeBtn.addEventListener("click", closeDialog);
 
   // Fallback link target in case the markup above is edited.
-  trigger.setAttribute("href", HOSTED_CHECKOUT_URL);
+  for (var i = 0; i < triggers.length; i++) triggers[i].setAttribute("href", HOSTED_CHECKOUT_URL);
 })();

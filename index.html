@@ -2,45 +2,468 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>All In Abe</title>
-    <meta name="description" content="Small money into tall money." />
+    <meta name="description" content="Small money into tall money. Every premium play from All In Abe and 1Take — 2 days for $9.99." />
     <meta name="theme-color" content="#0b0a14" />
     <link rel="icon" href="/favicon.ico" sizes="256x256" type="image/x-icon" />
     <link rel="preload" href="/assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/assets/abe-logo.avif" as="image" />
+    <link rel="preload" href="/assets/receipts/img-4066-720.webp" as="image" fetchpriority="high" />
     <link rel="stylesheet" href="/assets/styles.css" />
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
   </head>
   <body>
-    <main class="brand-page">
-      <div class="gate">
-        <div class="logo-wrap">
-          <div class="logo">
-            <div class="logo__glow" aria-hidden="true"></div>
-            <img class="logo__img" src="/assets/abe-logo.avif" alt="All In Abe" width="110" height="110" decoding="async" />
+    <div class="brand-page">
+      <!-- ============ NAV ============ -->
+      <header class="nav">
+        <div class="container nav__inner">
+          <a class="nav__brand" href="#top" aria-label="All In Abe — back to top">
+            <img src="/assets/abe-logo.avif" alt="" width="32" height="32" />
+            <span class="display nav__name">All In Abe</span>
+          </a>
+          <div class="nav__right">
+            <span class="nav__rating"><b>★ 4.6</b> · 1,429 reviews on Whop</span>
+            <a class="cta cta--sm" href="https://whop.com/checkout/plan_rFD30uR1jYf1w" target="_blank" rel="noreferrer" data-checkout>Get premium</a>
           </div>
         </div>
-        <h1 class="display display--lg">Join to get in</h1>
-        <p class="prose-body">this page is open to AIA members. grab free access and it loads instantly.</p>
-        <!-- Without JavaScript (or if Whop's script can't load) this link opens Whop's hosted checkout. -->
-        <a
-          id="get-access"
-          class="cta"
-          href="https://whop.com/checkout/plan_rFD30uR1jYf1w"
-          target="_blank"
-          rel="noreferrer"
-          >Get access</a
-        >
-      </div>
-    </main>
+      </header>
 
+      <main id="top">
+        <!-- ============ HERO ============ -->
+        <section class="hero">
+          <div class="container hero__grid">
+            <div class="hero__copy">
+              <p class="eyebrow">🎯 Welcome to All In</p>
+              <h1 class="display display--xl hero__title">
+                <span>All in</span>
+                <span class="gold-text">Abe</span>
+              </h1>
+              <p class="display hero__kicker">Small money into tall money.</p>
+              <p class="prose-body hero__sub">
+                if you're new here — this is ALL IN, home of All In Abe and 1Take. two cappers, 19,000+ members on Whop, and one job: turning small money into tall money. premium is where every play drops.
+              </p>
+              <div class="hero__ctas">
+                <a class="cta cta--lg" href="https://whop.com/checkout/plan_rFD30uR1jYf1w" target="_blank" rel="noreferrer" data-checkout id="hero-cta">
+                  Get the 2-day pass <span class="cta__price">· $9.99</span>
+                </a>
+                <a class="cta cta--lg cta--ghost" href="#receipts">See the receipts</a>
+              </div>
+              <p class="fine-print">2 days for $9.99, then $49.99/mo. cancel anytime.</p>
+              <ul class="trust" aria-label="Community stats">
+                <li><span class="trust__stars" aria-hidden="true">★★★★★</span><b>4.6</b> · 1,429 reviews</li>
+                <li><b>19,000+</b> members</li>
+                <li>NFL · NBA · MLB · WNBA · soccer</li>
+              </ul>
+            </div>
+
+            <div class="slip-stack" aria-hidden="true">
+              <img class="slip-stack__img slip-stack__img--a" src="/assets/receipts/img-1565-720.webp" alt="" width="720" height="962" />
+              <img class="slip-stack__img slip-stack__img--b" src="/assets/receipts/img-1804-720.webp" alt="" width="720" height="850" />
+              <img class="slip-stack__img slip-stack__img--c" src="/assets/receipts/img-4066-720.webp" alt="" width="720" height="587" fetchpriority="high" />
+              <div class="chip chip--odds">
+                <span class="chip__label">NBA same game parlay</span>
+                <span class="chip__value">+16085</span>
+              </div>
+              <div class="chip chip--win">
+                <span class="chip__label">$300 wager</span>
+                <span class="chip__value money">$48,555.27</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ STATS ============ -->
+        <section class="section--tight" aria-label="Highlight slips by the numbers">
+          <div class="container">
+            <div class="panel panel--lit stats reveal">
+              <div class="stat">
+                <div class="stat__value">$4,500</div>
+                <div class="stat__label">Staked</div>
+              </div>
+              <div class="stats__arrow" aria-hidden="true">→</div>
+              <div class="stat">
+                <div class="stat__value money" data-count="329774" data-prefix="$">$329,774</div>
+                <div class="stat__label">Cashed out</div>
+              </div>
+              <div class="stats__arrow" aria-hidden="true">·</div>
+              <div class="stat">
+                <div class="stat__value gold-text">15</div>
+                <div class="stat__label">Highlight slips</div>
+              </div>
+              <p class="prose-body stats__note">the 15 highlight slips on this page, added up. every one of 'em is right below 👇</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ RECEIPTS ============ -->
+        <section class="section" id="receipts">
+          <div class="container">
+            <div class="section__head reveal">
+              <p class="eyebrow">📸 The receipts</p>
+              <h2 class="display display--lg">The slips don't lie.</h2>
+              <p class="prose-body">real tickets from the squad. NBA, NFL, MLB, WNBA, soccer — we eat every season. tap any slip to see it full size.</p>
+            </div>
+          </div>
+
+          <div class="marquee" style="--marquee-dur: 80s">
+            <div class="marquee__track">
+              <button type="button" class="slip" data-full="/assets/receipts/img-1565-full.webp" data-caption="MLB 3-leg parlay (+26150) · $200 → $52,500.00">
+                <img src="/assets/receipts/img-1565-720.webp" alt="FanDuel slip: MLB 3-leg parlay at +26150, $200 wager won $52,500.00" width="720" height="962" loading="lazy" decoding="async" />
+                <span class="slip__meta"><span class="slip__tag">MLB · 3-leg · +26150</span><span class="slip__win">$200 → <span class="money">$52,500</span></span></span>
+              </button>
+              <button type="button" class="slip" data-full="/assets/receipts/img-4066-full.webp" data-caption="NBA same game parlay (+16085) · $300 → $48,555.27">
+                <img src="/assets/receipts/img-4066-720.webp" alt="FanDuel slip: NBA same game parlay at +16085, $300 wager won $48,555.27" width="720" height="587" loading="lazy" decoding="async" />
+                <span class="slip__meta"><span class="slip__tag">NBA · SGP · +16085</span><span class="slip__win">$300 → <span class="money">$48,555</span></span></span>
+              </button>
+              <button type="button" class="slip" data-full="/assets/receipts/img-1804-full.webp" data-caption="WNBA 3-leg parlay (+11630) · $300 → $35,191.80">
+                <img src="/assets/receipts/img-1804-720.webp" alt="FanDuel slip: WNBA 3-leg parlay at +11630, $300 wager won $35,191.80" width="720" height="850" loading="lazy" decoding="async" />
+                <span class="slip__meta"><span class="slip__tag">WNBA · 3-leg · +11630</span><span class="slip__win">$300 → <span class="money">$35,191</span></span></span>
+              </button>
+              <button type="button" class="slip" data-full="/assets/receipts/img-0576-full.webp" data-caption="WNBA 3-leg parlay (+11170) · $300 → $33,810.00">
+                <img src="/assets/receipts/img-0576-720.webp" alt="FanDuel slip: WNBA 3-leg parlay at +11170, $300 wager won $33,810.00" width="720" height="853" loading="lazy" decoding="async" />
+                <span class="slip__meta"><span class="slip__tag">WNBA · 3-leg · +11170</span><span class="slip__win">$300 → <span class="money">$33,810</span></span></span>
+              </button>
+              <button type="button" class="slip" data-full="/assets/receipts/img-8592-full.webp" data-caption="Soccer 3-leg parlay (+7919) · $300 → $24,057.00">
+                <img src="/assets/receipts/img-8592-720.webp" alt="FanDuel slip: soccer 3-leg parlay at +7919, $300 wager won $24,057.00" width="720" height="966" loading="lazy" decoding="async" />
+                <span class="slip__meta"><span class="slip__tag">Soccer · 3-leg · +7919</span><span class="slip__win">$300 → <span class="money">$24,057</span></span></span>
+              </button>
+              <button type="button" class="slip" data-full="/assets/receipts/img-3787-full.webp" data-caption="MLB 3-leg home run parlay (+6689) · $300 → $20,368.80">
+                <img src="/assets/receipts/img-3787-720.webp" alt="FanDuel slip: MLB 3-leg home run parlay at +6689, $300 wager won $20,368.80" width="720" height="987" loading="lazy" decoding="async" />
+                <span class="slip__meta"><span class="slip__tag">MLB · HR parlay · +6689</span><span class="slip__win">$300 → <span class="money">$20,368</span></span></span>
+              </button>
+              <button type="button" class="slip" data-full="/assets/receipts/img-6120-full.webp" data-caption="MLB 3-leg home run parlay (+6466) · $300 → $19,698.00">
+                <img src="/assets/receipts/img-6120-720.webp" alt="FanDuel slip: MLB 3-leg home run parlay at +6466, $300 wager won $19,698.00" width="720" height="1001" loading="lazy" decoding="async" />
+                <span class="slip__meta"><span class="slip__tag">MLB · HR parlay · +6466</span><span class="slip__win">$300 → <span class="money">$19,698</span></span></span>
+              </button>
+              <button type="button" class="slip" data-full="/assets/receipts/img-9272-full.webp" data-caption="NFL 3-leg parlay (+5527) · $300 → $16,883.10">
+                <img src="/assets/receipts/img-9272-720.webp" alt="FanDuel slip: NFL 3-leg parlay at +5527, $300 wager won $16,883.10" width="720" height="831" loading="lazy" decoding="async" />
+                <span class="slip__meta"><span class="slip__tag">NFL · 3-leg · +5527</span><span class="slip__win">$300 → <span class="money">$16,883</span></span></span>
+              </button>
+            </div>
+          </div>
+
+          <div class="marquee marquee--reverse" style="--marquee-dur: 72s">
+            <div class="marquee__track">
+              <button type="button" class="slip" data-full="/assets/receipts/img-4056-full.webp" data-caption="NBA same game parlay (+4112) · $400 → $16,851.79">
+                <img src="/assets/receipts/img-4056-720.webp" alt="FanDuel slip: NBA same game parlay at +4112, $400 wager won $16,851.79" width="720" height="582" loading="lazy" decoding="async" />
+                <span class="slip__meta"><span class="slip__tag">NBA · SGP · +4112</span><span class="slip__win">$400 → <span class="money">$16,851</span></span></span>
+              </button>
+              <button type="button" class="slip" data-full="/assets/receipts/img-1954-full.webp" data-caption="WNBA same game parlay (+7763) · $200 → $15,727.22">
+                <img src="/assets/receipts/img-1954-720.webp" alt="FanDuel slip: WNBA same game parlay at +7763, $200 wager won $15,727.22" width="720" height="731" loading="lazy" decoding="async" />
+                <span class="slip__meta"><span class="slip__tag">WNBA · SGP · +7763</span><span class="slip__win">$200 → <span class="money">$15,727</span></span></span>
+              </button>
+              <button type="button" class="slip" data-full="/assets/receipts/img-8872-full.webp" data-caption="Soccer 3-leg parlay (+36090) · $300 → $15,510.00">
+                <img src="/assets/receipts/img-8872-720.webp" alt="FanDuel slip: soccer 3-leg parlay at +36090, $300 wager won $15,510.00" width="720" height="844" loading="lazy" decoding="async" />
+                <span class="slip__meta"><span class="slip__tag">Soccer · 3-leg · +36090</span><span class="slip__win">$300 → <span class="money">$15,510</span></span></span>
+              </button>
+              <button type="button" class="slip" data-full="/assets/receipts/img-6943-full.webp" data-caption="NFL same game parlay (+2474) · $500 → $12,870.66">
+                <img src="/assets/receipts/img-6943-720.webp" alt="FanDuel slip: NFL same game parlay at +2474, $500 wager won $12,870.66" width="720" height="662" loading="lazy" decoding="async" />
+                <span class="slip__meta"><span class="slip__tag">NFL · SGP · +2474</span><span class="slip__win">$500 → <span class="money">$12,870</span></span></span>
+              </button>
+              <button type="button" class="slip" data-full="/assets/receipts/img-6936-full.webp" data-caption="MLB 2-leg home run parlay (+2276) · $400 → $9,504.00">
+                <img src="/assets/receipts/img-6936-720.webp" alt="FanDuel slip: MLB 2-leg home run parlay at +2276, $400 wager won $9,504.00" width="720" height="763" loading="lazy" decoding="async" />
+                <span class="slip__meta"><span class="slip__tag">MLB · HR parlay · +2276</span><span class="slip__win">$400 → <span class="money">$9,504</span></span></span>
+              </button>
+              <button type="button" class="slip" data-full="/assets/receipts/img-8803-full.webp" data-caption="Soccer 3-leg parlay (+2114) · $200 → $4,428.00">
+                <img src="/assets/receipts/img-8803-720.webp" alt="FanDuel slip: soccer 3-leg parlay at +2114, $200 wager won $4,428.00" width="720" height="981" loading="lazy" decoding="async" />
+                <span class="slip__meta"><span class="slip__tag">Soccer · 3-leg · +2114</span><span class="slip__win">$200 → <span class="money">$4,428</span></span></span>
+              </button>
+              <button type="button" class="slip" data-full="/assets/receipts/img-2426-full.webp" data-caption="WNBA 3-leg parlay (+1809) · $200 → $3,819.06">
+                <img src="/assets/receipts/img-2426-720.webp" alt="FanDuel slip: WNBA 3-leg parlay at +1809, $200 wager won $3,819.06" width="720" height="852" loading="lazy" decoding="async" />
+                <span class="slip__meta"><span class="slip__tag">WNBA · 3-leg · +1809</span><span class="slip__win">$200 → <span class="money">$3,819</span></span></span>
+              </button>
+            </div>
+          </div>
+
+          <div class="container">
+            <p class="prose-body receipts__note reveal">these are highlights, not every ticket — nobody hits 'em all. we post the plays, you bet your own size.</p>
+          </div>
+        </section>
+
+        <hr class="rule-gold" />
+
+        <!-- ============ WHAT IS ALL IN ============ -->
+        <section class="section" id="inside">
+          <div class="container">
+            <div class="section__head reveal">
+              <p class="eyebrow">💰 What is All In</p>
+              <h2 class="display display--lg">Two cappers. <span class="gold-text">One squad.</span></h2>
+              <p class="prose-body">ALL IN is All In Abe's sports betting community on Whop. the free side gets you in the door. premium is where the plays actually drop — every channel from both cappers, plus the VIP chat.</p>
+            </div>
+
+            <div class="cappers">
+              <article class="panel capper reveal">
+                <div class="capper__head">
+                  <img class="capper__avatar" src="/assets/abe-logo.avif" alt="" width="52" height="52" loading="lazy" />
+                  <div>
+                    <h3 class="display display--md">All In Abe</h3>
+                    <div class="capper__role">The face of the squad</div>
+                  </div>
+                </div>
+                <p class="prose-body">Abe's own NFL and NBA cards, plus the builders — the parlays where small money turns into tall money.</p>
+                <ul class="channels">
+                  <li class="channel"><span class="channel__icon" aria-hidden="true">NFL</span><span class="channel__name">All In NFL</span><span class="channel__lock" aria-label="included in premium">🔓</span></li>
+                  <li class="channel"><span class="channel__icon" aria-hidden="true">NBA</span><span class="channel__name">All In NBA</span><span class="channel__lock" aria-label="included in premium">🔓</span></li>
+                  <li class="channel"><span class="channel__icon" aria-hidden="true">BLD</span><span class="channel__name">All In Builders</span><span class="channel__lock" aria-label="included in premium">🔓</span></li>
+                </ul>
+              </article>
+
+              <article class="panel capper reveal">
+                <div class="capper__head">
+                  <div class="capper__avatar capper__avatar--mono" aria-hidden="true">1T</div>
+                  <div>
+                    <h3 class="display display--md">1Take</h3>
+                    <div class="capper__role">A whole different capper</div>
+                  </div>
+                </div>
+                <p class="prose-body">a different capper with a different card. more angles, more plays — same squad, same membership.</p>
+                <ul class="channels">
+                  <li class="channel"><span class="channel__icon" aria-hidden="true">NFL</span><span class="channel__name">1Take NFL</span><span class="channel__lock" aria-label="included in premium">🔓</span></li>
+                  <li class="channel"><span class="channel__icon" aria-hidden="true">NBA</span><span class="channel__name">1Take NBA</span><span class="channel__lock" aria-label="included in premium">🔓</span></li>
+                  <li class="channel"><span class="channel__icon" aria-hidden="true">BLD</span><span class="channel__name">1Take Builders</span><span class="channel__lock" aria-label="included in premium">🔓</span></li>
+                </ul>
+              </article>
+            </div>
+
+            <div class="panel extras reveal">
+              <ul class="channels">
+                <li class="channel">
+                  <span class="channel__icon" aria-hidden="true">ML</span>
+                  <span class="channel__name">Moneylines<span class="channel__desc">straight-up moneyline plays.</span></span>
+                  <span class="channel__lock" aria-label="included in premium">🔓</span>
+                </li>
+                <li class="channel">
+                  <span class="channel__icon" aria-hidden="true">VIP</span>
+                  <span class="channel__name">VIP chat<span class="channel__desc">thousands of sports bettors talking plays every single day.</span></span>
+                  <span class="channel__lock" aria-label="included in premium">🔓</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ FREE VS PREMIUM ============ -->
+        <section class="section" id="premium">
+          <div class="container">
+            <div class="section__head section__head--center reveal">
+              <p class="eyebrow">🔓 Why premium</p>
+              <h2 class="display display--lg">Free gets you in the door. <span class="gold-text">Premium gets you the plays.</span></h2>
+            </div>
+
+            <div class="panel compare reveal">
+              <table>
+                <thead>
+                  <tr>
+                    <th scope="col"><span class="sr-only">What's included</span></th>
+                    <th scope="col">Free</th>
+                    <th scope="col" class="col-premium">Premium</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Free chat</th>
+                    <td><span class="yes" aria-label="Included">✓</span></td>
+                    <td class="col-premium"><span class="yes" aria-label="Included">✓</span></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Announcements</th>
+                    <td><span class="yes" aria-label="Included">✓</span></td>
+                    <td class="col-premium"><span class="yes" aria-label="Included">✓</span></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">All In NFL · NBA · Builders</th>
+                    <td><span class="no" aria-label="Not included">—</span></td>
+                    <td class="col-premium"><span class="yes" aria-label="Included">✓</span></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">1Take NFL · NBA · Builders</th>
+                    <td><span class="no" aria-label="Not included">—</span></td>
+                    <td class="col-premium"><span class="yes" aria-label="Included">✓</span></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Moneylines</th>
+                    <td><span class="no" aria-label="Not included">—</span></td>
+                    <td class="col-premium"><span class="yes" aria-label="Included">✓</span></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">VIP chat</th>
+                    <td><span class="no" aria-label="Not included">—</span></td>
+                    <td class="col-premium"><span class="yes" aria-label="Included">✓</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="compare__cta reveal">
+              <a class="cta cta--lg" href="https://whop.com/checkout/plan_rFD30uR1jYf1w" target="_blank" rel="noreferrer" data-checkout>Unlock premium <span class="cta__price">· 2 days for $9.99</span></a>
+              <p class="fine-print">then $49.99/mo. cancel anytime.</p>
+            </div>
+          </div>
+        </section>
+
+        <hr class="rule-gold" />
+
+        <!-- ============ HOW IT WORKS ============ -->
+        <section class="section" id="how">
+          <div class="container">
+            <div class="section__head reveal">
+              <p class="eyebrow">⚡ How it works</p>
+              <h2 class="display display--lg">Three steps. That's it.</h2>
+            </div>
+            <ol class="steps">
+              <li class="panel step reveal">
+                <span class="step__num gold-text">01</span>
+                <h3 class="display display--md">Grab the pass</h3>
+                <p class="prose-body">2 days of premium for $9.99. about one chipotle bowl.</p>
+              </li>
+              <li class="panel step reveal">
+                <span class="step__num gold-text">02</span>
+                <h3 class="display display--md">Channels unlock</h3>
+                <p class="prose-body">premium shows up in your Whop sidebar the second you check out. turn on notifications 🔔 so you never miss a drop.</p>
+              </li>
+              <li class="panel step reveal">
+                <span class="step__num gold-text">03</span>
+                <h3 class="display display--md">Run with the winners</h3>
+                <p class="prose-body">tail the plays, bet your own size, and cash with the squad.</p>
+              </li>
+            </ol>
+          </div>
+        </section>
+
+        <!-- ============ OFFER ============ -->
+        <section class="section offer" id="join">
+          <div class="container offer">
+            <div class="holo reveal" data-holo>
+              <img class="holo__art" src="/assets/abe-card.webp" alt="" loading="lazy" />
+              <div class="holo__foil" aria-hidden="true"></div>
+              <div class="holo__glare" aria-hidden="true"></div>
+              <div class="holo__content">
+                <p class="eyebrow">🔒 Premium access</p>
+                <h2 class="display display--lg">The 2-day pass</h2>
+                <div class="offer__price">
+                  <span class="offer__amount">$9.99</span>
+                  <span class="offer__per">for 2 days</span>
+                </div>
+                <p class="prose-body offer__terms">then $49.99/mo. cancel anytime.</p>
+                <ul class="checklist">
+                  <li>every premium play from Abe &amp; 1Take</li>
+                  <li>NFL + NBA channels from both cappers</li>
+                  <li>builders &amp; moneylines</li>
+                  <li>the VIP chat</li>
+                  <li>instant access in your Whop sidebar</li>
+                </ul>
+                <a class="cta cta--lg cta--block" href="https://whop.com/checkout/plan_rFD30uR1jYf1w" target="_blank" rel="noreferrer" data-checkout id="offer-cta">Get the 2-day pass</a>
+                <p class="offer__trust"><b>★ 4.6</b> on Whop · 1,429 reviews · secure checkout by Whop</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ FAQ ============ -->
+        <section class="section" id="faq">
+          <div class="container">
+            <div class="section__head section__head--center reveal">
+              <p class="eyebrow">❓ Questions</p>
+              <h2 class="display display--lg">Got questions?</h2>
+            </div>
+            <div class="faq reveal">
+              <details>
+                <summary>what is ALL IN?</summary>
+                <p class="prose-body">All In Abe's sports betting community on Whop — 19,000+ members, two cappers (All In Abe and 1Take), a free chat for everybody, and premium channels where every play drops.</p>
+              </details>
+              <details>
+                <summary>what do i get with premium?</summary>
+                <p class="prose-body">every premium channel: All In NFL, All In NBA, All In Builders, 1Take NFL, 1Take NBA, 1Take Builders and Moneylines — plus the VIP chat.</p>
+              </details>
+              <details>
+                <summary>who's 1Take?</summary>
+                <p class="prose-body">a different capper with a different card. premium gets you both, so you're never stuck with one angle.</p>
+              </details>
+              <details>
+                <summary>how fast do i get in?</summary>
+                <p class="prose-body">instantly. check out and the premium channels unlock in your Whop sidebar. turn on notifications so you catch every drop.</p>
+              </details>
+              <details>
+                <summary>what happens after the 2 days?</summary>
+                <p class="prose-body">your pass rolls into ALL IN Premium at $49.99/mo. don't want it? cancel from your Whop memberships before the 2 days are up and you won't pay the $49.99.</p>
+              </details>
+              <details>
+                <summary>are the FIFA Premium Pass and NFL Play of the Week included?</summary>
+                <p class="prose-body">nope — those are separate. premium covers everything listed above.</p>
+              </details>
+              <details>
+                <summary>do you guarantee wins?</summary>
+                <p class="prose-body">nah, and anybody who does is lying. not every ticket hits. we post the plays and the receipts — you bet what you can afford.</p>
+              </details>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ CLOSING ============ -->
+        <section class="section closing" id="ready">
+          <div class="container closing__inner reveal">
+            <p class="eyebrow">🔥 Ready?</p>
+            <h2 class="display display--lg">Stop watching from <span class="gold-text">the sidelines.</span></h2>
+            <p class="prose-body">you seen the slips. you know the plays. one chipotle bowl gets you every premium play for 2 days.</p>
+            <a class="cta cta--lg" href="https://whop.com/checkout/plan_rFD30uR1jYf1w" target="_blank" rel="noreferrer" data-checkout id="closing-cta">Get the 2-day pass <span class="cta__price">· $9.99</span></a>
+            <p class="fine-print">2 days for $9.99, then $49.99/mo. cancel anytime.</p>
+          </div>
+        </section>
+      </main>
+
+      <!-- ============ FOOTER ============ -->
+      <footer class="footer">
+        <div class="container">
+          <div class="footer__brand">
+            <img src="/assets/abe-logo.avif" alt="" width="28" height="28" loading="lazy" />
+            <span class="display">All In Abe</span>
+          </div>
+          <p>small money into tall money.</p>
+          <p>21+ only. play responsibly. gambling problem? call 1-800-GAMBLER.</p>
+          <p><a href="https://whop.com/allinabe/" target="_blank" rel="noreferrer">All In Abe on Whop</a></p>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Sticky CTA (phones) -->
+    <div class="sticky-cta" id="sticky-cta" aria-hidden="true">
+      <div class="sticky-cta__text">
+        <span class="sticky-cta__title">2-day pass · $9.99</span>
+        <span class="sticky-cta__terms">then $49.99/mo · cancel anytime</span>
+      </div>
+      <a class="cta cta--sm" href="https://whop.com/checkout/plan_rFD30uR1jYf1w" target="_blank" rel="noreferrer" data-checkout tabindex="-1">Get in</a>
+    </div>
+
+    <!-- Receipt lightbox -->
+    <dialog id="lightbox" class="lightbox" aria-label="Slip">
+      <div class="lightbox__frame">
+        <img id="lightbox-img" class="lightbox__img" alt="" />
+        <div class="lightbox__bar">
+          <div class="lightbox__nav">
+            <button type="button" class="icon-btn" data-lb-prev aria-label="Previous slip">
+              <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M9 2 4 7l5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            </button>
+            <button type="button" class="icon-btn" data-lb-next aria-label="Next slip">
+              <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="m5 2 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            </button>
+          </div>
+          <span id="lightbox-caption" class="lightbox__caption"></span>
+          <button type="button" class="icon-btn" data-lb-close aria-label="Close">
+            <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M1.5 1.5l11 11m0-11l-11 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /></svg>
+          </button>
+        </div>
+      </div>
+    </dialog>
+
+    <!-- Whop checkout -->
     <dialog id="checkout-dialog" class="checkout-dialog" aria-label="Checkout">
       <div class="checkout-dialog__panel">
         <header class="checkout-dialog__bar">
           <span class="eyebrow">🔒 Secure checkout</span>
-          <button type="button" class="checkout-dialog__close" data-close aria-label="Close">
+          <button type="button" class="icon-btn" data-close aria-label="Close">
             <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
-              <title>Close</title>
               <path d="M1.5 1.5l11 11m0-11l-11 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
             </svg>
           </button>
@@ -61,5 +484,6 @@
 
     <script src="https://cdn.whop.com/elements/amber/elements.js" data-whop-elements async></script>
     <script src="/assets/checkout.js" defer></script>
+    <script src="/assets/site.js" defer></script>
   </body>
 </html>
