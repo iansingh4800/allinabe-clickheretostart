@@ -149,7 +149,7 @@
   /* ---------- sticky CTA (phones): show once the hero CTA scrolls away,
      hide again while the offer card or closing CTA is on screen ---------- */
   var sticky = document.getElementById("sticky-cta");
-  var watched = ["hero-cta", "offer-cta", "closing-cta"]
+  var watched = ["hero-cta", "offer-cta", "fifa-cta", "closing-cta"]
     .map(function (id) {
       return document.getElementById(id);
     })

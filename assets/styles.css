@@ -1617,3 +1617,90 @@ html:not(.js) .marquee__track,
   white-space: nowrap;
   border: 0;
 }
+
+/* ---------- FIFA premium pass ---------- */
+
+.fifa {
+  display: grid;
+  gap: 1.75rem;
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  overflow: hidden;
+}
+
+.fifa::after {
+  /* faint pitch lines */
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background:
+    radial-gradient(circle at 100% 50%, transparent 0 88px, rgba(139, 132, 196, 0.09) 89px 90px, transparent 91px),
+    linear-gradient(90deg, transparent calc(100% - 1px), rgba(139, 132, 196, 0.07) 0);
+  background-size: 100% 100%, 50% 100%;
+}
+
+.fifa > * {
+  position: relative;
+  z-index: 1;
+}
+
+@media (min-width: 860px) {
+  .fifa {
+    grid-template-columns: 1.35fr 0.65fr;
+    align-items: center;
+  }
+}
+
+.fifa__stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1.1rem 0 1rem;
+}
+
+.pill {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  padding: 0.45rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(11, 10, 20, 0.6);
+  border: 1px solid var(--brand-hairline);
+  color: var(--brand-text-dim);
+}
+
+.pill b {
+  color: var(--money);
+  font-weight: 600;
+}
+
+.fifa__copy .prose-body {
+  margin: 0 0 1.25rem;
+  font-size: 1rem;
+}
+
+.fifa .checklist {
+  margin-bottom: 0;
+}
+
+.price-box {
+  background: rgba(11, 10, 20, 0.6);
+  border: 1px solid var(--brand-hairline);
+  border-radius: 16px;
+  padding: clamp(1.25rem, 3vw, 1.75rem);
+  text-align: center;
+}
+
+.price-box .eyebrow {
+  margin-bottom: 0.6rem;
+}
+
+.price-box__terms {
+  margin: 0.5rem 0 1.25rem;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--brand-text-dim);
+}

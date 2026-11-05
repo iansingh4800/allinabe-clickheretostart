@@ -1,30 +1,53 @@
-// Whop embedded checkout (full Checkout Element) for the 2-Day Pass.
+// Whop embedded checkout (full Checkout Element) for every pass sold on this page.
 // Docs: https://docs.whop.com/elements/beta/checkout/overview
+//
+// Any link with data-checkout opens the checkout dialog. data-checkout="plan_…"
+// picks the plan; an empty data-checkout means the 2-Day Pass. Each link's href is
+// Whop's hosted checkout for that plan, which is what you get without JavaScript.
 (function () {
   "use strict";
 
-  var PLAN_ID = "plan_rFD30uR1jYf1w"; // 2-Day Pass — $9.99
-  var HOSTED_CHECKOUT_URL = "https://whop.com/checkout/" + PLAN_ID;
+  var PLANS = {
+    plan_rFD30uR1jYf1w: { name: "2-Day Pass", item: "premium" }, // $9.99 for 2 days, then $49.99/mo
+    plan_Tgd2zkJOW7NKc: { name: "FIFA Premium Pass", item: "fifa" }, // $99.99 one-time
+  };
+  var DEFAULT_PLAN = "plan_rFD30uR1jYf1w";
   var SDK_WAIT_MS = 12000;
 
-  // Every "buy" button on the page carries data-checkout and links to Whop's hosted
-  // checkout as a no-JS fallback; with JS they open the embedded checkout instead.
   var triggers = document.querySelectorAll("[data-checkout]");
   var dialog = document.getElementById("checkout-dialog");
+  var titleEl = document.getElementById("checkout-title");
   var loadingEl = document.getElementById("checkout-loading");
   var errorEl = document.getElementById("checkout-error");
+  var errorLink = errorEl ? errorEl.querySelector("a") : null;
   var mountEl = document.getElementById("whop-checkout");
 
+  function hostedUrl(plan) {
+    return "https://whop.com/checkout/" + plan;
+  }
+
+  function planFor(el) {
+    var plan = el.getAttribute("data-checkout");
+    return PLANS[plan] ? plan : DEFAULT_PLAN;
+  }
+
+  // Keep every fallback href pointing at the right plan.
+  for (var i = 0; i < triggers.length; i++) {
+    triggers[i].setAttribute("href", hostedUrl(planFor(triggers[i])));
+  }
+
   if (!triggers.length || !dialog || typeof dialog.showModal !== "function") {
-    // Very old browser: leave the plain link to Whop's hosted checkout in place.
+    // Very old browser: the plain links to Whop's hosted checkout stay in charge.
     return;
   }
 
-  // One checkout session for the life of the page. The plan never changes, so
-  // closing and reopening the dialog shows the same session (entered details and
-  // any in-progress payment step are kept) instead of minting a new one.
-  var checkout = null;
-  var state = "idle"; // idle | loading | ready | failed
+  // One live checkout at a time. Reopening the same pass reuses its session, so
+  // entered details and any in-progress bank step survive closing the dialog.
+  // Picking a different pass destroys that session and starts a new one; the
+  // generation counter makes callbacks from a replaced session do nothing.
+  var whop = null;
+  var current = null; // { plan, handle, state: "loading" | "ready" | "failed" }
+  var generation = 0;
 
   function show(el, visible) {
     el.hidden = !visible;
@@ -63,88 +86,110 @@
 
   // Where the buyer lands after checkout / an off-site bank step (3DS etc.).
   // Root-absolute so it works whether this page is served at "/" or at Whop's
-  // "/experiences/exp_…" path. Only set on https (or localhost): Whop requires it.
-  function returnUrl() {
+  // "/experiences/exp_…" path; ?item= tells the thank-you page which pass it was.
+  // Only set on https (or localhost): Whop requires it.
+  function returnUrl(plan) {
     var loc = window.location;
     var isLocal = loc.hostname === "localhost" || loc.hostname === "127.0.0.1";
     if (loc.protocol !== "https:" && !(isLocal && loc.protocol === "http:")) return undefined;
-    return loc.origin + "/thanks.html";
+    return loc.origin + "/thanks.html?item=" + PLANS[plan].item;
   }
 
-  function startCheckout() {
-    if (state === "loading" || state === "ready") return;
-    state = "loading";
+  function teardown() {
+    generation++;
+    if (current && current.handle) {
+      try {
+        current.handle.destroy();
+      } catch (_) {}
+    }
+    current = null;
+    mountEl.innerHTML = "";
+  }
+
+  function startCheckout(plan) {
+    if (current && current.plan === plan && current.state !== "failed") {
+      if (current.state === "ready") showReady();
+      else showLoading();
+      return;
+    }
+
+    teardown(); // different pass, or retrying a failed load
+    var myGen = generation;
+    var session = { plan: plan, handle: null, state: "loading" };
+    current = session;
     showLoading();
 
     waitForSdk(SDK_WAIT_MS)
       .then(function (WhopElements) {
-        var whop = WhopElements({
-          appearance: {
-            theme: { appearance: "dark", accentColor: "violet", grayColor: "mauve" },
-            variables: { "--radius": "8px" },
-            classes: {
-              "whop-CheckoutPayButton": {
-                backgroundColor: "#8b84c4",
-                borderColor: "#8b84c4",
-                color: "#0b0a14",
+        if (myGen !== generation) return; // superseded while the SDK loaded
+
+        if (!whop) {
+          whop = WhopElements({
+            appearance: {
+              theme: { appearance: "dark", accentColor: "violet", grayColor: "mauve" },
+              variables: { "--radius": "8px" },
+              classes: {
+                "whop-CheckoutPayButton": {
+                  backgroundColor: "#8b84c4",
+                  borderColor: "#8b84c4",
+                  color: "#0b0a14",
+                },
               },
             },
-          },
-        });
+          });
+        }
 
         var options = {
-          plan: PLAN_ID,
+          plan: plan,
           onComplete: function (result) {
             // Fires before any returnUrl navigation and can repeat when a session is
             // restored. Put analytics/pixels here, deduplicated by result.paymentId.
             // Do NOT fulfil from here — fulfil from Whop webhooks.
-            document.dispatchEvent(new CustomEvent("aia:checkout-complete", { detail: result }));
+            document.dispatchEvent(
+              new CustomEvent("aia:checkout-complete", { detail: { plan: plan, result: result } })
+            );
           },
         };
-        var url = returnUrl();
+        var url = returnUrl(plan);
         if (url) options.returnUrl = url;
 
-        checkout = whop.checkout.create(options);
-
-        var element = checkout.create("checkout", {
-          onReady: function () {
-            state = "ready";
-            showReady();
-          },
-          onError: function (e) {
-            // The element keeps its own fallback visible for in-flow errors; only
-            // swap to our fallback if it never finished loading.
-            if (state !== "ready") {
-              state = "failed";
-              showError();
-            }
-            if (window.console) console.warn("[whop checkout]", e && (e.code || e.message));
-          },
-        });
-        element.mount(mountEl);
+        session.handle = whop.checkout.create(options);
+        session.handle
+          .create("checkout", {
+            onReady: function () {
+              if (myGen !== generation) return;
+              session.state = "ready";
+              showReady();
+            },
+            onError: function (e) {
+              if (myGen !== generation) return;
+              // The element shows its own fallback for in-flow errors; only swap to
+              // ours if it never finished loading.
+              if (session.state !== "ready") {
+                session.state = "failed";
+                showError();
+              }
+              if (window.console) console.warn("[whop checkout]", e && (e.code || e.message));
+            },
+          })
+          .mount(mountEl);
       })
       .catch(function (err) {
-        state = "failed";
+        if (myGen !== generation) return;
+        session.state = "failed";
         showError();
         if (window.console) console.warn("[whop checkout]", err && err.message);
       });
   }
 
-  function openDialog() {
+  function openDialog(plan) {
+    var name = PLANS[plan].name;
+    if (titleEl) titleEl.textContent = "🔒 Secure checkout · " + name;
+    dialog.setAttribute("aria-label", "Checkout: " + name);
+    if (errorLink) errorLink.setAttribute("href", hostedUrl(plan));
     if (!dialog.open) dialog.showModal();
     document.body.classList.add("scroll-locked");
-    if (state === "failed") {
-      // Let the buyer retry a failed load: tear down any half-built handle first.
-      if (checkout) {
-        try {
-          checkout.destroy();
-        } catch (_) {}
-        checkout = null;
-      }
-      mountEl.innerHTML = "";
-      state = "idle";
-    }
-    startCheckout();
+    startCheckout(plan);
   }
 
   function closeDialog() {
@@ -157,7 +202,7 @@
     // Modifier-clicks keep the normal "open Whop checkout in a new tab" behaviour.
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
     event.preventDefault();
-    openDialog();
+    openDialog(planFor(link));
   });
 
   dialog.addEventListener("close", function () {
@@ -170,7 +215,4 @@
 
   var closeBtn = dialog.querySelector("[data-close]");
   if (closeBtn) closeBtn.addEventListener("click", closeDialog);
-
-  // Fallback link target in case the markup above is edited.
-  for (var i = 0; i < triggers.length; i++) triggers[i].setAttribute("href", HOSTED_CHECKOUT_URL);
 })();

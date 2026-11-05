@@ -33,6 +33,8 @@
       (function () {
         var q = new URLSearchParams(window.location.search);
         var status = q.get("status");
+        // ?item= is added by our own checkout's returnUrl (see assets/checkout.js).
+        var passName = { premium: "the 2-day pass", fifa: "the FIFA Premium Pass" }[q.get("item")] || "your pass";
         var hasPaymentId = /^pay_[A-Za-z0-9]+$/.test(q.get("payment_id") || "");
         var title = document.getElementById("title");
         var message = document.getElementById("message");
@@ -64,7 +66,7 @@
         if (status === "succeeded" || (!status && hasPaymentId)) {
           set(
             "You're in",
-            "thanks for grabbing the 2-day pass. your access shows up on your Whop account in a moment — check your email for the receipt.",
+            "thanks for grabbing " + passName + ". your access shows up on your Whop account in a moment — check your email for the receipt.",
             // Inside Whop the buyer is already where their access lives; elsewhere, send them to Whop.
             inWhop ? null : "Go to Whop",
             "https://whop.com/",

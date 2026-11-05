@@ -1,14 +1,21 @@
 # All In Abe — sales page
 
-The All In Abe premium sales page as a Whop app, with Whop's embedded **Checkout Element** for the 2-Day Pass (`plan_rFD30uR1jYf1w`). Plain static files: hosted on Vercel, shown inside Whop as an experience.
+The All In Abe premium sales page as a Whop app, with Whop's embedded **Checkout Element** for:
+
+| Pass | Plan | Price |
+| --- | --- | --- |
+| 2-Day Pass (ALL IN Premium) | `plan_rFD30uR1jYf1w` | $9.99 for 2 days, then $49.99/mo |
+| FIFA Premium Pass | `plan_Tgd2zkJOW7NKc` | $99.99 one-time |
+
+Plain static files: hosted on Vercel, shown inside Whop as an experience.
 
 | File | What it is |
 | --- | --- |
 | `index.html` | The sales page: hero, receipts reel, the two cappers, free vs premium, how it works, the 2-day pass offer, FAQ. Every button with `data-checkout` opens the checkout in a dialog; without JavaScript they link to `https://whop.com/checkout/plan_rFD30uR1jYf1w`. |
-| `assets/checkout.js` | Mounts the checkout (`https://cdn.whop.com/elements/amber/elements.js`). |
+| `assets/checkout.js` | Mounts the checkout (`https://cdn.whop.com/elements/amber/elements.js`). A button with `data-checkout="plan_…"` sells that plan (empty = 2-Day Pass). To sell another plan, add it to `PLANS` at the top of the file. |
 | `assets/site.js` | Receipts reel, slip lightbox, count-up, card tilt, sticky phone CTA, scroll reveals. |
 | `assets/receipts/` | Web-sized copies of the ticket screenshots (`*-720.webp` for the reel, `*-full.webp` for the lightbox). The originals (`IMG_*`) stay in the repo root. |
-| `thanks.html` | Where buyers land after checkout (`?payment=…&status=…`) or from the checkout link's redirect (`?payment_id=…`). Query params are hints only; fulfil from Whop webhooks. |
+| `thanks.html` | Where buyers land after checkout (`?item=premium\|fifa&payment=…&status=…`) or from a checkout link's redirect (`?payment_id=…`). Query params are hints only; fulfil from Whop webhooks. |
 | `vercel.json` | Serves `index.html` for Whop's `/experiences/<experienceId>` path. |
 
 ## 1. Deploy to Vercel
@@ -31,7 +38,7 @@ Vercel redeploys on every push to the production branch (the repo's default bran
 
 ## 3. Checkout settings
 
-- **After payment:** the embedded checkout sends buyers to `/thanks.html`. Also set the checkout link's redirect URL (Whop dashboard → Checkout links) to `https://<your-vercel-url>/thanks.html` so both paths match.
+- **After payment:** the embedded checkout sends buyers to `/thanks.html`. Also set each checkout link's redirect URL (Whop dashboard → Checkout links — the 2-Day Pass and the FIFA pass) to `https://<your-vercel-url>/thanks.html` so both paths match.
 - **Test once for real:** buy with a cheap plan or a promo that leaves $1, then refund. A 100%-off code skips the card step.
 
 ## Local preview
